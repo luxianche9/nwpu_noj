@@ -12,7 +12,7 @@ int main(void)
         for (j = 0; j < N; j++)
         {
             scanf("%d", &num);
-            if ((i + j) > N - 2)
+            if (j >= i)
                 printf("%d", num);
             else
                 printf(" ");
