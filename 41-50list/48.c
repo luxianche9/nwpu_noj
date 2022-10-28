@@ -1,76 +1,56 @@
 #include <stdio.h>
 
-// function to swap elements
-void swap(int *a, int *b) {
-  int t = *a;
+void swap(int *a, int *b)
+{
+  int tmp = *a;
   *a = *b;
-  *b = t;
+  *b = tmp;
 }
 
-// function to find the partition position
-int partition(int array[], int low, int high) {
-  
-  // select the rightmost element as pivot
-  int pivot = array[high];
-  
-  // pointer for greater element
-  int i = (low - 1);
-
-  // traverse each element of the array
-  // compare them with the pivot
-  for (int j = low; j < high; j++) {
-    if (array[j] >= pivot) {
-
-      // if element smaller than pivot is found
-      // swap it with the greater element pointed by i
+int partition(int *A, int low, int high)
+{
+  int pivot = A[high];
+  int i = low - 1;
+  for (int j = low; j < high; j++)
+  {
+    if (A[j] > pivot)
+    {
       i++;
-      
-      // swap element at i with element at j
-      swap(&array[i], &array[j]);
+      swap(&A[i], &A[j]);
     }
   }
-
-  // swap the pivot element with the greater element at i
-  swap(&array[i + 1], &array[high]);
-  
-  // return the partition point
-  return (i + 1);
+  swap(&A[high], &A[i + 1]);
+  return i + 1;
 }
 
-void quickSort(int array[], int low, int high) {
-  if (low < high) {
-    
-    // find the pivot element such that
-    // elements smaller than pivot are on left of pivot
-    // elements greater than pivot are on right of pivot
-    int pi = partition(array, low, high);
-    
-    // recursive call on the left of pivot
-    quickSort(array, low, pi - 1);
-    
-    // recursive call on the right of pivot
-    quickSort(array, pi + 1, high);
+void quicksort(int *A, int low, int high)
+{
+  if (low < high)
+  {
+    int pi = partition(A, low, high);
+    quicksort(A, low, pi - 1);
+    quicksort(A, pi + 1, high);
   }
 }
 
 int main(void)
 {
-    int n;
-    int A[100];
-    int s, m;
-    scanf("%d", &n);
-    int i;
-    for (i = 0; i < n; i++)
-        scanf("%d", &A[i]);
-    scanf("%d %d", &s, &m);
+  int n;
+  int A[100];
+  int s, m;
+  scanf("%d", &n);
+  int i;
+  for (i = 0; i < n; i++)
+    scanf("%d", &A[i]);
+  scanf("%d %d", &s, &m);
 
-    quickSort(A, s, s + m - 1);
+  quicksort(A, s, m);
 
-    for (i = 0; i < n; i++)
-    {
-        printf("%d", A[i]);
-        if (i != n - 1)
-            printf(" ");
-    }
-    return 0;
+  for (i = 0; i < n; i++)
+  {
+    printf("%d", A[i]);
+    if (i != n - 1)
+      printf(" ");
+  }
+  return 0;
 }
