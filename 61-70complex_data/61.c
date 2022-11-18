@@ -9,13 +9,11 @@ int main(void)
     char c1, c2;
     int row = 1;
     int col = 1;
-    while (1)
+    while (!feof(fp1))
     {
-        c1 = getc(fp1);
-        c2 = getc(fp2);
-        if (c1 == EOF || c2 == EOF)
-            break;
-        else if (c1 == '\n' || c2 == '\n')
+        c1 = fgetc(fp1);
+        c2 = fgetc(fp2);
+        if (c1 == '\n' || c2 == '\n')
         {
             row++;
             col = 1;

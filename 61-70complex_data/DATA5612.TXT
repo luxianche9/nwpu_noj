@@ -1,0 +1,7 @@
+0001 #include <stdio.h>
+0002 
+0003 int main(void)
+0004 {
+0005     printf("hello world");
+0006     return 0;
+0007 }

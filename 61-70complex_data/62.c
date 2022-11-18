@@ -15,14 +15,13 @@ void replace(char *str, char * fstr, char * rstr)
 {
     char str_copy[1000];
     strcpy(str_copy, str);
-    str[0] = '\0';
 
     int i = 0, j = 0;
     while (str_copy[i] != '\0')
     {
         if (equal(&str_copy[i], fstr, strlen(fstr)))
         {
-            strcat(&str[j], rstr);
+            strncpy(str + j, rstr, strlen(rstr));
             j += strlen(rstr);
             i += strlen(fstr);
         }
